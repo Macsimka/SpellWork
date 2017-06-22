@@ -52,7 +52,7 @@ namespace SpellWork
 
         public static void AppendFormatLineIfNotNull(this RichTextBox builder, string format, string arg)
         {
-            if (arg != String.Empty)
+            if (arg != string.Empty)
             {
                 builder.AppendFormatLine(format, arg);
             }
@@ -99,7 +99,7 @@ namespace SpellWork
             rtb.SelectAll();
             rtb.SelectionColor = rtb.ForeColor;
 
-            foreach (String keyword in keywords)
+            foreach (string keyword in keywords)
             {
                 int keywordPos = rtb.Find(keyword, RichTextBoxFinds.MatchCase | RichTextBoxFinds.WholeWord);
                 

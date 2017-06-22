@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace SpellWork
 {
@@ -74,7 +73,7 @@ namespace SpellWork
             }
         }
 
-        private static Object GetValue<T>(T T_entry, MemberInfo field)
+        private static object GetValue<T>(T T_entry, MemberInfo field)
         {
             if (field is FieldInfo)
                 return T_entry.GetType().GetField(field.Name).GetValue(T_entry);

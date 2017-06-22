@@ -6,7 +6,6 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Threading;
 
 namespace SpellWork
 {
@@ -40,7 +39,7 @@ namespace SpellWork
 
             _cbSqlSpellFamily.SetEnumValues<SpellFamilyNames>("SpellFamilyName");
 
-            _status.Text = String.Format("DBC Locale: {0}", DBC.Locale);
+            _status.Text = string.Format("DBC Locale: {0}", DBC.Locale);
 
             _cbAdvansedFilter1.SetStructFields<SpellEntry>();
             _cbAdvansedFilter2.SetStructFields<SpellEntry>();
@@ -326,7 +325,7 @@ namespace SpellWork
         private void GetProcAttribute(SpellEntry spell)
         {
             uint[] SpellFamilyFlags = _tvFamilyTree.GetMask();
-            var statusproc = String.Format("Spell ({0}) {1}. Proc Event ==> SchoolMask 0x{2:X2}, SpellFamily {3}, 0x{4:X8} {5:X8} {6:X8}, procFlag 0x{7:X8}, procEx 0x{8:X8}, PPMRate {9}",
+            var statusproc = string.Format("Spell ({0}) {1}. Proc Event ==> SchoolMask 0x{2:X2}, SpellFamily {3}, 0x{4:X8} {5:X8} {6:X8}, procFlag 0x{7:X8}, procEx 0x{8:X8}, PPMRate {9}",
                 spell.ID,
                 spell.SpellNameRank,
                 _clbSchools.GetFlagsValue(),
@@ -478,7 +477,7 @@ namespace SpellWork
 
         private void SqlSave_Click(object sender, EventArgs e)
         {
-            if (_rtbSqlLog.Text != String.Empty)
+            if (_rtbSqlLog.Text != string.Empty)
             {
                 SaveFileDialog _sd = new SaveFileDialog();
                 _sd.Filter = "SQL files|*.sql";
@@ -540,10 +539,10 @@ namespace SpellWork
             sb.AppendFormatIfNotNull(" procFlags {1} {0} &&", _tbSqlProc.Text.ToInt32(), compare);
             sb.AppendFormatIfNotNull(" procEx {1} {0} &&", _tbSqlProcEx.Text.ToInt32(), compare);
 
-            String subquery = sb.ToString().Remove(sb.Length - 2, 2);
+            string subquery = sb.ToString().Remove(sb.Length - 2, 2);
             subquery = subquery == "WHERE" ? "" : subquery;
 
-            String query = String.Format("SELECT * FROM `spell_proc_event` {0} ORDER BY entry", subquery);
+            string query = String.Format("SELECT * FROM `spell_proc_event` {0} ORDER BY entry", subquery);
             MySQLConnect.SelectProc(query);
 
             _lvDataList.VirtualListSize = MySQLConnect.SpellProcEvent.Count;
@@ -551,7 +550,7 @@ namespace SpellWork
                 _lvDataList.Items[_lvDataList.SelectedIndices[0]].Selected = false;
 
             // check bad spell and drop
-            foreach (String str in MySQLConnect.Dropped)
+            foreach (string str in MySQLConnect.Dropped)
                 _rtbSqlLog.AppendText(str);
         }
 
@@ -559,11 +558,11 @@ namespace SpellWork
         {
             uint[] SpellFamilyFlags = _tvFamilyTree.GetMask();
             // spell comment
-            var comment = String.Format("-- ({0}) {1}", ProcInfo.SpellProc.ID, ProcInfo.SpellProc.SpellNameRank);
+            var comment = string.Format("-- ({0}) {1}", ProcInfo.SpellProc.ID, ProcInfo.SpellProc.SpellNameRank);
             // drop query
-            var drop = String.Format("DELETE FROM `spell_proc_event` WHERE `entry` IN ({0});", ProcInfo.SpellProc.ID);
+            var drop = string.Format("DELETE FROM `spell_proc_event` WHERE `entry` IN ({0});", ProcInfo.SpellProc.ID);
             // insert query
-            var insert = String.Format("INSERT INTO `spell_proc_event` VALUES ({0}, 0x{1:X2}, 0x{2:X2}, 0x{3:X8}, 0x{4:X8}, 0x{5:X8}, 0x{6:X8}, 0x{7:X8}, {8}, {9}, {10});",
+            var insert = string.Format("INSERT INTO `spell_proc_event` VALUES ({0}, 0x{1:X2}, 0x{2:X2}, 0x{3:X8}, 0x{4:X8}, 0x{5:X8}, 0x{6:X8}, 0x{7:X8}, {8}, {9}, {10});",
                 ProcInfo.SpellProc.ID,
                 _clbSchools.GetFlagsValue(),
                 _cbProcFitstSpellFamily.SelectedValue.ToUInt32(),

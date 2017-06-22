@@ -105,20 +105,20 @@ namespace SpellWork
             if (_lvSpellList.SelectedIndices.Count > 0)
             {
                 Spell = _spellList[_lvSpellList.SelectedIndices[0]];
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
 
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!((Char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)))
+            if (!((char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)))
                 e.Handled = true;
         }
 
         private void Cencel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void SpellList_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)

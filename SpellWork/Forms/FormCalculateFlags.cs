@@ -7,32 +7,32 @@ namespace SpellWork
     {
         public uint Flags { get; private set; }
  
-        public FormCalculateFlags(Type data, uint value, String remove)
+        public FormCalculateFlags(Type data, uint value, string remove)
         {
             InitializeComponent();
             
-            this._clbCalcFlags.SetFlags(data, remove);
-            this._clbCalcFlags.SetCheckedItemFromFlag(value);
+            _clbCalcFlags.SetFlags(data, remove);
+            _clbCalcFlags.SetCheckedItemFromFlag(value);
 
-            this.Text = "Calculate " + data.Name;
+            Text = "Calculate " + data.Name;
         }
 
         private void _bOk_Click(object sender, EventArgs e)
         {
-            this.Flags = this._clbCalcFlags.GetFlagsValue();
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            Flags = _clbCalcFlags.GetFlagsValue();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void _bNo_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void _clbCalcFlags_SelectedValueChanged(object sender, EventArgs e)
         {
-            this.Flags = this._clbCalcFlags.GetFlagsValue();
-            _lFlagValue.Text = "Value: " + this.Flags;
+            Flags = _clbCalcFlags.GetFlagsValue();
+            _lFlagValue.Text = "Value: " + Flags;
         }
     }
 }

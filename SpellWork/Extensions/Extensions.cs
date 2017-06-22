@@ -123,10 +123,10 @@ namespace SpellWork
             return num;
         }
 
-        public static String NormaliseString(this String text, String remove)
+        public static string NormaliseString(this String text, String remove)
         {
-            var str = String.Empty;
-            if (remove != String.Empty)
+            var str = string.Empty;
+            if (remove != string.Empty)
             {
                 text = text.Replace(remove, String.Empty);
             }
@@ -170,11 +170,11 @@ namespace SpellWork
 
             foreach (var elem in Enum.GetValues(typeof(T)))
             {
-                _clb.Items.Add(elem.ToString().NormaliseString(String.Empty));
+                _clb.Items.Add(elem.ToString().NormaliseString(string.Empty));
             }
         }
 
-        public static void SetFlags<T>(this CheckedListBox _clb, String remove)
+        public static void SetFlags<T>(this CheckedListBox _clb, string remove)
         {
             _clb.Items.Clear();
 
@@ -184,7 +184,7 @@ namespace SpellWork
             }
         }
 
-        public static void SetFlags(this CheckedListBox _clb, Type type, String remove)
+        public static void SetFlags(this CheckedListBox _clb, Type type, string remove)
         {
             _clb.Items.Clear();
 
@@ -218,7 +218,7 @@ namespace SpellWork
 
             DataTable dt = new DataTable();
             dt.Columns.Add("ID", typeof(MemberInfo));
-            dt.Columns.Add("NAME", typeof(String));
+            dt.Columns.Add("NAME", typeof(string));
 
             var type = typeof(T).GetMembers();
             int i = 0;
@@ -228,7 +228,7 @@ namespace SpellWork
                 {
                     DataRow dr = dt.NewRow();
                     dr["ID"] = str;
-                    dr["NAME"] = String.Format("({0:000}) {1}", i, str.Name);
+                    dr["NAME"] = string.Format("({0:000}) {1}", i, str.Name);
                     dt.Rows.Add(dr);
                     i++;
                 }
@@ -300,9 +300,9 @@ namespace SpellWork
             return value;
         }
 
-        public static bool IsEmpty(this String str)
+        public static bool IsEmpty(this string str)
         {
-            return str == String.Empty;
+            return str == string.Empty;
         }
     }
 }

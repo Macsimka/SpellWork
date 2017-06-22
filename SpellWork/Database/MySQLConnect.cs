@@ -2,7 +2,6 @@
 using SpellWork.Properties;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 
 namespace SpellWork
 {
@@ -15,11 +14,11 @@ namespace SpellWork
         public static List<string> Dropped = new List<string>();
         public static List<SpellProcEventEntry> SpellProcEvent = new List<SpellProcEventEntry>();
 
-        private static String ConnectionString
+        private static string ConnectionString
         {
             get 
             {
-                return String.Format("Server={0};Port={1};Uid={2};Pwd={3};Database={4};character set=utf8;Connection Timeout=10", 
+                return string.Format("Server={0};Port={1};Uid={2};Pwd={3};Database={4};character set=utf8;Connection Timeout=10", 
                     Settings.Default.Host, 
                     Settings.Default.Port, 
                     Settings.Default.User, 
@@ -28,7 +27,7 @@ namespace SpellWork
             }
         }
 
-        private static String GetSpellName(uint id)
+        private static string GetSpellName(uint id)
         {
             if (DBC.Spell.ContainsKey(id))
             {
@@ -36,8 +35,8 @@ namespace SpellWork
             }
             else
             {
-                Dropped.Add(String.Format("DELETE FROM `spell_proc_event` WHERE `entry` IN ({0});\r\n", id.ToUInt32()));
-                return String.Empty;
+                Dropped.Add(string.Format("DELETE FROM `spell_proc_event` WHERE `entry` IN ({0});\r\n", id.ToUInt32()));
+                return string.Empty;
             }
         }
 
@@ -90,7 +89,7 @@ namespace SpellWork
         {
             List<Item> items = DBC.ItemTemplate;
             // In order to reduce the search time, we make the first selection of all items that have spellid
-            string query = String.Format(
+            string query = string.Format(
                 @"SELECT    t.entry, 
                             t.name, 
                             t.description, 

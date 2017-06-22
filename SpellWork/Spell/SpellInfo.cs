@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Text;
 
 namespace SpellWork
 {
@@ -27,7 +25,8 @@ namespace SpellWork
         {
             rtb.Clear();
             rtb.SetBold();
-            rtb.AppendFormatLine("ID - {0} {1}", spell.ID, spell.SpellNameRank);
+            rtb.AppendFormatLine("{1} - {0}", spell.ID, spell.SpellNameRank);
+            rtb.AppendFormatLine("http://tbc.wowroad.info/?spell={0}", spell.ID);
             rtb.SetDefaultStyle();
 
             rtb.AppendFormatLine(_line);
